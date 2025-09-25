@@ -1,4 +1,4 @@
-variable "tfstate_bucket" {
-    type = string
-}
+# variable "tfstate_bucket" {
+#     type = string
+# }
 
