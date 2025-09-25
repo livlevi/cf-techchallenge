@@ -1,0 +1,57 @@
+# ---------------------------
+# Terraform (AI Generated with minor tweaking)
+# ---------------------------
+# Local terraform state
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Terraform plan output
+*.tfplan
+*.tfplan.*
+
+# Override files (local-only config)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+notes.txt
+
+# Terraform provider & module caches
+.terraform/
+.terraform.lock.hcl
+
+# ---------------------------
+# Environment / Secrets
+# ---------------------------
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Environment files
+.env
+.env.*
+*.secret
+*.bak
+*.tmp
+
+# ---------------------------
+# Logs
+# ---------------------------
+*.log
+*.err
+*.out
+
+# ---------------------------
+# Editors / OS
+# ---------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
