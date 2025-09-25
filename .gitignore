@@ -38,6 +38,7 @@ notes.txt
 *.secret
 *.bak
 *.tmp
+*.conf
 
 # ---------------------------
 # Logs

@@ -21,7 +21,7 @@ env:
 
 jobs:
     terraform:
-        name: "Terraform Runnter"
+        name: "Terraform Runner"
         runs-on: ubuntu-latest
         defaults:
             run:
