@@ -1,6 +1,7 @@
 module "challenge_vpc" {
     source = "git::https://github.com/Coalfire-CF/terraform-aws-vpc-nfw.git"
-    name = "cf-challenge-vpc"
+    
+    vpc_name = "cf-challenge-vpc"
     cidr = "10.1.0.0/16"
     azs = [ "us-east-1a", "us-east-1b" ]
 
@@ -39,5 +40,7 @@ module "challenge_vpc" {
     enable_nat_gateway = true
     one_nat_gateway_per_az = true
     enable_vpn_gateway = false
-    enable_dns_hostname = true
+    enable_dns_hostnames = true
+
+    flow_log_destination_type = "cloud-watch-vpc-logs"
 }
