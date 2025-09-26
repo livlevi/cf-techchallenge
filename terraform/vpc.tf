@@ -42,5 +42,5 @@ module "challenge_vpc" {
     enable_vpn_gateway = false
     enable_dns_hostnames = true
 
-    flow_log_destination_type = "cloud-watch-vpc-logs"
+    flow_log_destination_type = "cloud-watch-logs"
 }
