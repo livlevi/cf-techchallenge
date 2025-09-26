@@ -1,5 +1,5 @@
 module "challenge_vpc" {
-    source = "git::https://github.com/Coalfire-CF/terraform-aws-vpc.git?ref=vx.x.x"
+    source = "git::https://github.com/Coalfire-CF/terraform-aws-vpc-nfw.git?ref=vx.x.x"
 
     name = "cf-challenge-vpc"
     cidr = "10.1.0.0/16"
