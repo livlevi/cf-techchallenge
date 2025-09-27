@@ -11,6 +11,7 @@ module "challenge_ec2" {
     subnet_ids = module.challenge_vpc.private_subnets["-subnet02-public-us-east-1b"]
 
     ec2_key_pair = module.ec2_test.kms_key_id
+    ebs_kms_key_arn = module.ec2_test.kms_key_arn
 
     root_volume_size = 50
 
