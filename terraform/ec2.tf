@@ -3,7 +3,7 @@ module "challenge_ec2" {
 
     name = "cf-ec2instance"
 
-    ami = ""
+    ami = "ami-0fd3ac4abb734302a"
     ec2_instance_type = "t2.micro"
     instance_count = 1
 
