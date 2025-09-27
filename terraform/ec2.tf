@@ -8,7 +8,7 @@ module "challenge_ec2" {
     instance_count = 1
 
     vpc_id = module.challenge_vpc.vpc_id
-    subnet_ids = values(module.challenge_vpc.public_subnets[0])
+    subnet_ids = values(module.challenge_vpc.public_subnets["-subnet01-public-us-east-1a"])
 
     ec2_key_pair = module.challenge_kms.kms_key_id
     ebs_kms_key_arn = module.challenge_kms.kms_key_arn
