@@ -31,4 +31,6 @@ module "challenge_ec2" {
             description = "Allow all egress"
         }
     }
+
+    global_tags = {}
 }

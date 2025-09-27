@@ -27,10 +27,10 @@ notes.txt
 # ---------------------------
 # Environment / Secrets
 # ---------------------------
-*.tfvars
-*.tfvars.json
-*.auto.tfvars
-*.auto.tfvars.json
+# *.tfvars
+# *.tfvars.json
+# *.auto.tfvars
+# *.auto.tfvars.json
 
 # Environment files
 .env
