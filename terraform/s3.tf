@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "images_bucket" {
     bucket = "${var.prefix}-images-${random_id.suffix.hex}"
 }
 
-resource "aws_s3_object" "images_bucket_object" {
+resource "aws_s3_object" "meme_folder" {
     bucket = aws_s3_bucket.images_bucket.id
     key = "Memes"
 }
@@ -35,12 +35,12 @@ resource "aws_s3_bucket" "logs_bucket" {
     bucket = "${var.prefix}-logs-${random_id.suffix.hex}"
 }
 
-resource "aws_s3_object" "logs_bucket_object" {
+resource "aws_s3_object" "active_folder" {
     bucket = aws_s3_bucket.logs_bucket.id
     key = "Active folder"
 }
 
-resource "aws_s3_object" "logs_bucket_object" {
+resource "aws_s3_object" "inactive_folder" {
     bucket = aws_s3_bucket.logs_bucket.id
     key = "Inactive folder"
 }
