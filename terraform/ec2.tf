@@ -30,8 +30,6 @@ module "challenge_ec2" {
     egress_rules = {
         "allow_all_egress" = {
             ip_protocol = "-1"
-            from_port = 0
-            to_port = 0
             cidr_ipv4 = "0.0.0.0/0"
             description = "Allow all egress"
         }
