@@ -1,4 +1,4 @@
-resource "random_id" "suffix_hash" {
+resource "random_id" "suffix" {
     byte_length = 6
 }
 
