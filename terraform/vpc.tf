@@ -48,7 +48,7 @@ module "challenge_vpc" {
 resource "aws_security_group" "lt_security_group" {
     name = "allow_ssh_https_sg"
 
-    vpc_id = module.challenge_vpc.id
+    vpc_id = module.challenge_vpc.vpc_id
 
 }
 
