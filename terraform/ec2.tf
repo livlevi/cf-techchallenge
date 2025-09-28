@@ -12,7 +12,7 @@ module "challenge_ec2" {
 
     ebs_optimized = false
 
-    ec2_key_pair = "cf-ec2-keypair"
+    ec2_key_pair = "cf-ec2-kms"
     ebs_kms_key_arn = module.challenge_kms.kms_key_arn
 
     root_volume_size = 50
