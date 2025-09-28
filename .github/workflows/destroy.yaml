@@ -42,4 +42,4 @@ jobs:
               continue-on-error: true
 
             - name: Terraform destroy
-              run: terraform destroy --auto-approve --input=false
+              run: terraform destroy --auto-approve --input=false --var-file vars.tfvars
