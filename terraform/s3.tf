@@ -28,7 +28,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "images_transition" {
             storage_class = "GLACIER"
         }
     }
- 
+    depends_on = [ aws_s3_bucket.images_bucket ]
 }
 
 resource "aws_s3_bucket" "logs_bucket" {
@@ -62,7 +62,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "logs_active_transition" {
             storage_class = "GLACIER"
         }
     }
- 
+    
+    depends_on = [ aws_s3_bucket.logs_bucket ]
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "logs_inactive_transition" {
@@ -81,5 +82,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "logs_inactive_transition" {
             days = 90
         }
     }
- 
+    
+    depends_on = [ aws_s3_bucket_lifecycle_configuration.logs_active_transition ]
 }
