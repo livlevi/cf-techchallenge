@@ -1,1 +1,5 @@
-tfstate_bucket = "tf-state-aws-es-devops"
+prefix = "cftc-livlevi"
+ami_id = "ami-0fd3ac4abb734302a"
+kp_name = "cf-kp"
+instance_type = "t2.micro"
+region = "us-east-1"

@@ -147,12 +147,6 @@ output "default_vpc_instance_tenancy" {
 
 }
 
-output "default_vpc_enable_dns_support" {
-  description = "Whether or not the VPC has DNS support"
-  value       = module.challenge_vpc.default_vpc_enable_dns_support
-
-}
-
 output "default_vpc_enable_dns_hostnames" {
   description = "Whether or not the VPC has DNS hostname support"
   value       = module.challenge_vpc.default_vpc_enable_dns_hostnames
@@ -162,14 +156,4 @@ output "default_vpc_enable_dns_hostnames" {
 output "default_vpc_main_route_table_id" {
   description = "The ID of the main route table associated with this VPC"
   value       = module.challenge_vpc.default_vpc_main_route_table_id
-}
-
-output "vpc_endpoints" {
-  description = "Map of VPC endpoint IDs"
-  value       = module.challenge_vpc.vpc_endpoints
-}
-
-output "vpc_endpoint_security_groups" {
-  description = "Map of security group IDs created for VPC endpoints"
-  value       = module.challenge_vpc.vpc_endpoint_security_groups
 }

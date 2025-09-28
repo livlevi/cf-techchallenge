@@ -1,10 +1,10 @@
 module "challenge_ec2" {
     source = "github.com/Coalfire-CF/terraform-aws-ec2"
 
-    name = "cf-ec2instance"
+    name = "${var.prefix}-instance-${var.region}"
 
-    ami = "ami-0fd3ac4abb734302a"
-    ec2_instance_type = "t2.micro"
+    ami = var.ami_id
+    ec2_instance_type = var.instance_type
     instance_count = 2
 
     vpc_id = module.challenge_vpc.vpc_id
@@ -13,10 +13,10 @@ module "challenge_ec2" {
 
     ebs_optimized = false
 
-    ec2_key_pair = "cf-kp"
+    ec2_key_pair = var.kp_name
     ebs_kms_key_arn = module.challenge_kms.kms_key_arn
 
-    root_volume_size = 50
+    root_volume_size = 20
 
     ingress_rules = {
         "ssh" = {

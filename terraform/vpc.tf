@@ -1,7 +1,7 @@
 module "challenge_vpc" {
     source = "git::https://github.com/Coalfire-CF/terraform-aws-vpc-nfw.git"
     
-    vpc_name = "cf-challenge-vpc"
+    vpc_name = "${var.prefix}-vpc-${var.region}"
     cidr = "10.1.0.0/16"
     azs = [ "us-east-1a", "us-east-1b" ]
 
@@ -9,26 +9,26 @@ module "challenge_vpc" {
         
         # Public Subnets
         {
-            tag = "subnet01-public"
+            tag = "${var.prefix}-subnet1-public"
             cidr = "10.1.0.0/24"
             type = "public"
             availability_zone = "us-east-1a"
         },
         {
-            tag = "subnet02-public"
+            tag = "${var.prefix}-subnet2-public"
             cidr = "10.1.1.0/24"
             type = "public"
             availability_zone = "us-east-1b"
         },
         # Private subnets
         {
-            tag = "subnet03-private"
+            tag = "${var.prefix}-subnet3-private"
             cidr = "10.1.2.0/24"
             type = "private"
             availability_zone = "us-east-1a"
         },
         {
-            tag = "subnet04-private"
+            tag = "${var.prefix}-subnet4-private"
             cidr = "10.1.4.0/24"
             type = "private"
             availability_zone = "us-east-1b"
