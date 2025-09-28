@@ -5,7 +5,7 @@ module "challenge_ec2" {
 
     ami = "ami-0fd3ac4abb734302a"
     ec2_instance_type = "t2.micro"
-    instance_count = 1
+    instance_count = 2
 
     vpc_id = module.challenge_vpc.vpc_id
     subnet_ids = values(module.challenge_vpc.public_subnets)
