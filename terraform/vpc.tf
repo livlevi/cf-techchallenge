@@ -44,3 +44,32 @@ module "challenge_vpc" {
 
     flow_log_destination_type = "cloud-watch-logs"
 }
+
+resource "aws_security_group" "lt_security_group" {
+    name = "allow_ssh_https_sg"
+
+    vpc_id = module.challenge_vpc.id
+
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+    security_group_id = aws_security_group.lt_security_group.id
+    cidr_ipv4 = module.challenge_vpc.private_subnets_cidr_blocks
+    from_port = 443
+    ip_protocol = "tcp"
+    to_port = 443
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+    security_group_id = aws_security_group.lt_security_group.id
+    cidr_ipv4 = module.challenge_vpc.private_subnets_cidr_blocks
+    from_port = 22
+    ip_protocol = "tcp"
+    to_port = 22
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
+    security_group_id = aws_security_group.lt_security_group.id
+    cidr_ipv4 = "0.0.0.0/0"
+    ip_protocol = "-1"
+}
