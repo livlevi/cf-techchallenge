@@ -9,6 +9,7 @@ module "challenge_ec2" {
 
     vpc_id = module.challenge_vpc.vpc_id
     subnet_ids = values(module.challenge_vpc.public_subnets)
+    associate_public_ip = true
 
     ebs_optimized = false
 
