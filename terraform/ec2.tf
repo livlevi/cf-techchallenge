@@ -38,5 +38,4 @@ module "challenge_ec2" {
 
     global_tags = {}
 
-    depends_on = [ module.challenge_kms ]
 }
