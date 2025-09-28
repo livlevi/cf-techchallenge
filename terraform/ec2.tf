@@ -26,6 +26,22 @@ module "challenge_ec2" {
             cidr_ipv4 = "0.0.0.0/0"
             description = "SSH"
         }
+        
+        "http" = {
+            ip_protocol = "tcp"
+            from_port = 80
+            to_port = 80
+            cidr_ipv4 = "0.0.0.0/0"
+            description = "HTTP"
+        }
+
+        "https" = {
+            ip_protocol = "tcp"
+            from_port = 443
+            to_port = 443
+            cidr_ipv4 = "0.0.0.0/0"
+            description = "HTTPS"
+        }
     }
 
     egress_rules = {
