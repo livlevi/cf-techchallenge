@@ -53,19 +53,33 @@ resource "aws_security_group" "lt_security_group" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+
+    for_each = module.challenge_vpc.private_subnets_cidr_blocks
+
     security_group_id = aws_security_group.lt_security_group.id
-    cidr_ipv4 = module.challenge_vpc.private_subnets_cidr_blocks
+    cidr_ipv4 = each.value
     from_port = 443
     ip_protocol = "tcp"
     to_port = 443
+
+    tags = {
+        Name = "sg-for-subnet-${each.value}"
+    }
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+
+    for_each = module.challenge_vpc.private_subnets_cidr_blocks
+
     security_group_id = aws_security_group.lt_security_group.id
-    cidr_ipv4 = module.challenge_vpc.private_subnets_cidr_blocks
+    cidr_ipv4 = each.value
     from_port = 22
     ip_protocol = "tcp"
     to_port = 22
+
+    tags = {
+        Name = "sg-for-subnet-${each.value}"
+    }
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
