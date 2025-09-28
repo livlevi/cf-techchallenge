@@ -39,3 +39,14 @@ resource "aws_iam_policy" "ec2_s3_policy" {
         ]
     })
 }
+
+resource "aws_iam_role_policy_attachment" "ec2_s3_attach" {
+    role = aws_iam_role.ec2_s3_role.name
+    policy_arn = aws_iam_policy.ec2_s3_policy.arn
+    
+}
+
+resource "aws_iam_instance_profile" "ec2_s3_instance_attach" {
+    name = "${var.prefix}-${var.instance_profile}"
+    role = aws_iam_role.ec2_s3_role.name
+}
