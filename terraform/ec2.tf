@@ -20,8 +20,8 @@ module "challenge_ec2" {
     ingress_rules = {
         "ssh" = {
             ip_protocol = "tcp"
-            from_port = "22"
-            to_port = "22"
+            from_port = 22
+            to_port = 22
             cidr_ipv4 = "0.0.0.0/0"
             description = "SSH"
         }
@@ -30,8 +30,8 @@ module "challenge_ec2" {
     egress_rules = {
         "allow_all_egress" = {
             ip_protocol = "-1"
-            from_port = "0"
-            to_port = "0"
+            from_port = 0
+            to_port = 0
             cidr_ipv4 = "0.0.0.0/0"
             description = "Allow all egress"
         }
