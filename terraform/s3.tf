@@ -65,7 +65,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "logs_active_transition" {
  
 }
 
-resource "aws_s3_bucket_lifecycle_configuration" "logs_active_transition" {
+resource "aws_s3_bucket_lifecycle_configuration" "logs_inactive_transition" {
     bucket = aws_s3_bucket.logs_bucket.id
 
     rule {
