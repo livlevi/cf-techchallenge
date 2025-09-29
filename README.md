@@ -98,6 +98,8 @@ I was unable to use the Coalfire Security Group Module as it doesn't export the 
 
 There are ways to improve the security for this solution for example, adding granularity to the Security Groups by only allowing access via certain IP address. However, that wasn't required in the assignment.
 
+## Testing
 
+My testing mainly consisted of verifying that the resources were created with the correct configuration. I tested the ability to SSH from the public subnet into the private subnet. Also, in order to verify that the subnets had access to S3, I used the aws s3 cp command. Lastly, I attempted to access the website via the ALB DNS hostname.
 
 Thank you!
