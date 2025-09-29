@@ -6,7 +6,7 @@ resource "aws_launch_template" "asg_lt" {
     instance_type = var.instance_type
     key_name = var.kp_name
 
-    vpc_security_group_ids = [module.challenge_sg.id]
+    vpc_security_group_ids = module.challenge_sg.id
 
     block_device_mappings {
       device_name = "/dev/sda1"
@@ -64,6 +64,6 @@ resource "aws_lb" "alb" {
     name = "${var.prefix}-cftc-alb-${var.region}"
     internal = false
     load_balancer_type = "application"
-    security_groups = [module.challege_sg.id]
+    security_groups = [module.challenge_sg.id]
     subnets = values(module.challenge_vpc.public_subnets)
 }
