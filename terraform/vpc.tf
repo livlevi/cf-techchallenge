@@ -88,36 +88,45 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
     ip_protocol = "-1"
 }
 
-# module "challege-sg" {
-#     source = "git::https://github.com/Coalfire-CF/terraform-aws-securitygroup"
-#     name = "${var.prefix}-web-sg-${var.region}"
-#     vpc_id = module.challenge_vpc.vpc_id
+resource "aws_security_group" "public_security_group" {
+    name = "allow_ssh_https_sg"
+
+    vpc_id = module.challenge_vpc.vpc_id
+
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_http_public" {
+
+    for_each = module.challenge_vpc.public_subnets_cidr_blocks
+
+    security_group_id = aws_security_group.public_security_group.id
+    cidr_ipv4 = each.value
+    from_port = 80
+    ip_protocol = "tcp"
+    to_port = 80
+
+    tags = {
+        Name = "sg-for-subnet-${each.value}"
+    }
+}
+
+# resource "aws_vpc_security_group_ingress_rule" "allow_ssh_public" {
 # 
-#     for_each = module.challenge_vpc.private_subnets_cidr_blocks
-#      
-#     ingress_rules = {
-#         "allow_https" = {
-#             ip_protocol = "tcp"
-#             from_port = "443"
-#             to_port = "443"
-#             cidr_ipv4 = each.value
-#             description = "Allow HTTPS"
-#         }
-#         "allow_ssh" = {
-#             ip_protocol = "tcp"
-#             from_port = "22"
-#             to_port = "2"
-#             cidr_ipv4 = each.value
-#             description = "Allow"
-#         }
+#     for_each = module.challenge_vpc.public_subnets_cidr_blocks
+# 
+#     security_group_id = aws_security_group.public_security_group.id
+#     cidr_ipv4 = each.value
+#     from_port = 22
+#     ip_protocol = "tcp"
+#     to_port = 22
+# 
+#     tags = {
+#         Name = "sg-for-subnet-${each.value}"
 #     }
-# 
-#     egress_rules = {
-#         "allow_all_egress" = {
-#             ip_protocol = "-1"
-#             cidr_ipv4 = "0.0.0.0/0"
-#             description = "Allow all egress"
-#         }
-#     }
-# 
 # }
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_public" {
+    security_group_id = aws_security_group.public_security_group.id
+    cidr_ipv4 = "0.0.0.0/0"
+    ip_protocol = "-1"
+}
