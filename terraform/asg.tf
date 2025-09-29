@@ -6,7 +6,7 @@ resource "aws_launch_template" "asg_lt" {
     instance_type = var.instance_type
     key_name = var.kp_name
 
-    vpc_security_group_ids = tostring(module.challenge_sg.id)
+    vpc_security_group_ids = [module.challenge_sg.id]
 
     block_device_mappings {
       device_name = "/dev/sda1"
