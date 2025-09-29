@@ -6,7 +6,7 @@ resource "aws_launch_template" "asg_lt" {
     instance_type = var.instance_type
     key_name = var.kp_name
 
-    vpc_security_group_ids = [aws_security_group.lt_security_group.id]
+    vpc_security_group_ids = [module.challenge_sg.id]
 
     block_device_mappings {
       device_name = "/dev/sda1"
@@ -29,6 +29,15 @@ resource "aws_placement_group" "asg_pg" {
     name = "${var.prefix}-pg-${var.region}"
     strategy = "spread"
 }
+
+resource "aws_lb_target_group" "albtg" {
+    name = "${var.prefix}-albtg-${var.region}"
+    port = 443
+    protocol = "HTTPS"
+    vpc_id = module.challenge_vpc.vpc_id
+
+}
+
 resource "aws_autoscaling_group" "cftc_asg" {
     name = "${var.prefix}-cftc-asg-${var.region}"
     desired_capacity = 2
@@ -39,6 +48,7 @@ resource "aws_autoscaling_group" "cftc_asg" {
     force_delete = true
     placement_group = aws_placement_group.asg_pg.id
     vpc_zone_identifier = values(module.challenge_vpc.private_subnets)
+    target_group_arns = aws_lb_target_group.albtg.arn
 
     availability_zone_distribution {
       capacity_distribution_strategy = "balanced-only"
@@ -48,4 +58,12 @@ resource "aws_autoscaling_group" "cftc_asg" {
       version = aws_launch_template.asg_lt.latest_version
     }
 
+}
+
+resource "aws_lb" "alb" {
+    name = "${var.prefix}-cftc-alb-${var.region}"
+    internal = false
+    load_balancer_type = "application"
+    security_groups = [module.challege_sg.id]
+    subnets = values(module.challege_vpc.public_subnets)
 }
