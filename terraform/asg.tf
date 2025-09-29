@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "cftc_asg" {
     force_delete = true
     placement_group = aws_placement_group.asg_pg.id
     vpc_zone_identifier = values(module.challenge_vpc.private_subnets)
-    target_group_arns = aws_lb_target_group.albtg.arn
+    target_group_arns = [aws_lb_target_group.albtg.arn]
 
     availability_zone_distribution {
       capacity_distribution_strategy = "balanced-only"
