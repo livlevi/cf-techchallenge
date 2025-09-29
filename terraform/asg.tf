@@ -25,12 +25,24 @@ resource "aws_launch_template" "asg_lt" {
 
 }
 
+resource "aws_placement_group" "asg_pg" {
+    name = "${var.prefix}-pg-${var.region}"
+    strategy = "cluster"
+}
 resource "aws_autoscaling_group" "cftc_asg" {
-    availability_zones = module.challenge_vpc.private_availability_zones
+    name = "${var.prefix}-cftc-asg-${var.region}"
     desired_capacity = 2
     max_size = 5
     min_size = 2
+    health_check_grace_period = 300
+    health_check_type = "ELB"
+    force_delete = true
+    placement_group = aws_placement_group.asg_pg.id
+    vpc_zone_identifier = [module.challenge_vpc.private_subnets[0], module.challenge_vpc.private_subnets[1]]
 
+    availability_zone_distribution {
+      capacity_distribution_strategy = "balanced-only"
+    }
     launch_template {
       id = aws_launch_template.asg_lt.id
       version = aws_launch_template.asg_lt.latest_version
