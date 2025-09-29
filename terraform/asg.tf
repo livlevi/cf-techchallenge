@@ -67,3 +67,15 @@ resource "aws_lb" "alb" {
     security_groups = [aws_security_group.lt_security_group.id]
     subnets = values(module.challenge_vpc.public_subnets)
 }
+
+resource "aws_lb_listener" "httplisten" {
+    load_balancer_arn = aws_lb.alb.arn
+    port = 80
+    protocol = "HTTP"
+
+    default_action {
+      type = "forward"
+      target_group_arn = aws_lb_target_group.albtg.arn
+    }
+
+}
