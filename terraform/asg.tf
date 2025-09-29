@@ -64,7 +64,7 @@ resource "aws_lb" "alb" {
     name = "${var.prefix}-cftc-alb-${var.region}"
     internal = false
     load_balancer_type = "application"
-    security_groups = [aws_security_group.lt_security_group.id]
+    security_groups = [aws_security_group.public_security_group.id]
     subnets = values(module.challenge_vpc.public_subnets)
 }
 

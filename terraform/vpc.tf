@@ -89,7 +89,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
 }
 
 resource "aws_security_group" "public_security_group" {
-    name = "allow_ssh_https_sg"
+    name = "allow_http_public_sg"
 
     vpc_id = module.challenge_vpc.vpc_id
 
