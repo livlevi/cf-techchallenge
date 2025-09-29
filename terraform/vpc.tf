@@ -114,7 +114,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http_public" {
     to_port = 80
 
     tags = {
-        Name = "sg-for-subnet-${each.value}"
+        Name = "allow_internet_access"
     }
 }
 
