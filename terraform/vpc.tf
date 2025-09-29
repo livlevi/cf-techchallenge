@@ -44,7 +44,7 @@ module "challenge_vpc" {
 
     public_custom_routes = [
         {
-            destination_cidr_block = module.challenge_vpc.public_subnets_cidr_blocks["${var.prefix}-subnet3-private"]
+            destination_cidr_block = module.challenge_vpc.public_subnets_cidr_blocks["-${var.prefix}-subnet1-public-us-east-1a"]
             internet_route = false
         }
     ]
