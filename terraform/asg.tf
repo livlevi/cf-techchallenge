@@ -65,5 +65,5 @@ resource "aws_lb" "alb" {
     internal = false
     load_balancer_type = "application"
     security_groups = [module.challege_sg.id]
-    subnets = values(module.challege_vpc.public_subnets)
+    subnets = values(module.challenge_vpc.public_subnets)
 }

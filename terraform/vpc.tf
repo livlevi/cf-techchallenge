@@ -45,7 +45,7 @@ module "challenge_vpc" {
     flow_log_destination_type = "cloud-watch-logs"
 }
 
-module "challege_sg" {
+module "challenge_sg" {
     source = "git::https://github.com/Coalfire-CF/terraform-aws-securitygroup"
     name = "web-sg-${var.region}"
     vpc_id = module.challenge_vpc.vpc_id
