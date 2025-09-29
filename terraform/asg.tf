@@ -27,7 +27,7 @@ resource "aws_launch_template" "asg_lt" {
 
 resource "aws_placement_group" "asg_pg" {
     name = "${var.prefix}-pg-${var.region}"
-    strategy = "cluster"
+    strategy = "spread"
 }
 resource "aws_autoscaling_group" "cftc_asg" {
     name = "${var.prefix}-cftc-asg-${var.region}"
