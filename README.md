@@ -96,6 +96,8 @@ Google was also used, but not all links were helpful.
 ## Notes
 I was unable to use the Coalfire Security Group Module as it doesn't export the outputs very well, and I didn't have the time to troubleshoot it. I used the standard Terraform module.
 
-Also, there are ways to improve the security for this solution for example, adding granularity to the Security Groups by only allowing access via certain IP address. However, that wasn't required in the assignment.
+There are ways to improve the security for this solution for example, adding granularity to the Security Groups by only allowing access via certain IP address. However, that wasn't required in the assignment.
+
+
 
 Thank you!

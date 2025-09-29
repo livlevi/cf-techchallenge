@@ -33,7 +33,11 @@ resource "aws_iam_policy" "ec2_s3_policy" {
                 ]
                 Resource = [
                     "${aws_s3_bucket.images_bucket.arn}",
-                    "${aws_s3_bucket.logs_bucket.arn}"
+                    "${aws_s3_bucket.images_bucket.arn}/Memes/*",
+                    "${aws_s3_bucket.logs_bucket.arn}",
+                    "${aws_s3_bucket.logs_bucket.arn}/Active folder/*",
+                    "${aws_s3_bucket.logs_bucket.arn}/Inactive folder/*",
+
                 ]
             }
         ]
