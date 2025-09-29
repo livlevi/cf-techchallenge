@@ -47,8 +47,9 @@ module "challenge_vpc" {
 
 module "challege_sg" {
     source = "git::https://github.com/Coalfire-CF/terraform-aws-securitygroup"
-    name = "${var.prefix}-web-sg-${var.region}"
+    name = "web-sg-${var.region}"
     vpc_id = module.challenge_vpc.vpc_id
+    sg_name_prefix = var.prefix
 
     for_each = module.challenge_vpc.private_subnets_cidr_blocks
      
