@@ -84,6 +84,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_icmp" {
     security_group_id = aws_security_group.lt_security_group.id
+    from_port = "-1"
+    to_port = "-1"
     cidr_ipv4 = "0.0.0.0/0"
     ip_protocol = "icmp"
 }
