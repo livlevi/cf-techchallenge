@@ -42,6 +42,13 @@ module "challenge_vpc" {
     enable_vpn_gateway = false
     enable_dns_hostnames = true
 
+    public_custom_routes = [
+        {
+            for_each = module.challenge_vpc.public_subnets_cidr_blocks
+            destination_cidr_block = each.value
+        }
+    ]
+
     flow_log_destination_type = "cloud-watch-logs"
 }
 
