@@ -54,7 +54,7 @@ resource "aws_security_group" "lt_security_group" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_https" {
 
-    for_each = module.challenge_vpc.private_subnets_cidr_blocks
+    for_each = module.challenge_vpc.public_subnets_cidr_blocks
 
     security_group_id = aws_security_group.lt_security_group.id
     cidr_ipv4 = each.value
@@ -69,7 +69,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
 
-    for_each = module.challenge_vpc.private_subnets_cidr_blocks
+    for_each = module.challenge_vpc.public_subnets_cidr_blocks
 
     security_group_id = aws_security_group.lt_security_group.id
     cidr_ipv4 = each.value
