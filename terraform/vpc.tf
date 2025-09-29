@@ -42,13 +42,6 @@ module "challenge_vpc" {
     enable_vpn_gateway = false
     enable_dns_hostnames = true
 
-    public_custom_routes = [
-        {
-            destination_cidr_block = module.challenge_vpc.public_subnets_cidr_blocks["-${var.prefix}-subnet1-public-us-east-1a"]
-            internet_route = false
-        }
-    ]
-
     flow_log_destination_type = "cloud-watch-logs"
 }
 
@@ -89,11 +82,19 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
     }
 }
 
+resource "aws_vpc_security_group_ingress_rule" "allow_icmp" {
+    security_group_id = aws_security_group.lt_security_group.id
+    cidr_ipv4 = "0.0.0.0/0"
+    ip_protocol = "icmp"
+}
+
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
     security_group_id = aws_security_group.lt_security_group.id
     cidr_ipv4 = "0.0.0.0/0"
     ip_protocol = "-1"
 }
+
+
 
 resource "aws_security_group" "public_security_group" {
     name = "allow_http_public_sg"
