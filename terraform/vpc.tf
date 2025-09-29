@@ -44,8 +44,8 @@ module "challenge_vpc" {
 
     public_custom_routes = [
         {
-            for_each = module.challenge_vpc.public_subnets_cidr_blocks
-            destination_cidr_block = each.value
+            destination_cidr_block = module.challenge_vpc.public_subnets_cidr_blocks[0]
+            internet_route = false
         }
     ]
 
