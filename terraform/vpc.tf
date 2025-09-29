@@ -29,7 +29,7 @@ module "challenge_vpc" {
         },
         {
             tag = "${var.prefix}-subnet4-private"
-            cidr = "10.1.4.0/24"
+            cidr = "10.1.3.0/24"
             type = "private"
             availability_zone = "us-east-1b"
         }
